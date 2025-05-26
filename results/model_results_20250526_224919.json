@@ -1,0 +1,80 @@
+{
+    "LogisticRegression": {
+        "cv_metrics": {
+            "train_accuracy": 0.6848458234097038,
+            "val_accuracy": 0.6845900322739682,
+            "train_precision": 0.22333893359668994,
+            "val_precision": 0.22288908329101953,
+            "train_recall": 0.6901549399993641,
+            "val_recall": 0.6885444526914002,
+            "train_f1": 0.33745632735294745,
+            "val_f1": 0.3367473232065293,
+            "train_roc_auc": 0.7542597724043821,
+            "val_roc_auc": 0.7537471360776996,
+            "train_average_precision": 0.3234694601000475,
+            "val_average_precision": 0.3229244713113889
+        },
+        "test_metrics": {
+            "accuracy": 0.6880360289798316,
+            "precision": 0.22484914975315415,
+            "recall": 0.6947457627118644,
+            "f1": 0.3397430584334853,
+            "roc_auc": 0.7602330067578976,
+            "average_precision": 0.3354401430093118
+        },
+        "model_path": "models\\LogisticRegression.joblib",
+        "timestamp": "2025-05-26T22:47:33.829573"
+    },
+    "RandomForest": {
+        "cv_metrics": {
+            "train_accuracy": 0.7613253052712409,
+            "val_accuracy": 0.7394518334444984,
+            "train_precision": 0.28503344483391907,
+            "val_precision": 0.24556596717499563,
+            "train_recall": 0.6978276442848396,
+            "val_recall": 0.5987032979206595,
+            "train_f1": 0.4047425843902441,
+            "val_f1": 0.3482741993628954,
+            "train_roc_auc": 0.8174362607864742,
+            "val_roc_auc": 0.7471175047588227,
+            "train_average_precision": 0.4323737686133823,
+            "val_average_precision": 0.31034509984225733
+        },
+        "test_metrics": {
+            "accuracy": 0.7354023888780106,
+            "precision": 0.24512889186474723,
+            "recall": 0.6205084745762712,
+            "f1": 0.3514278857691385,
+            "roc_auc": 0.7518333789863529,
+            "average_precision": 0.3208436546171315
+        },
+        "model_path": "models\\RandomForest.joblib",
+        "timestamp": "2025-05-26T22:49:03.598524"
+    },
+    "XGBoost": {
+        "cv_metrics": {
+            "train_accuracy": 0.8931279586671727,
+            "val_accuracy": 0.8858314944773692,
+            "train_precision": 0.787906666238607,
+            "val_precision": 0.5697938073722973,
+            "train_recall": 0.1106912949109022,
+            "val_recall": 0.07430632443031385,
+            "train_f1": 0.19410789646674545,
+            "val_f1": 0.13144654547101858,
+            "train_roc_auc": 0.8288960532141874,
+            "val_roc_auc": 0.7460689185451409,
+            "train_average_precision": 0.45980367165542146,
+            "val_average_precision": 0.31226364548943786
+        },
+        "test_metrics": {
+            "accuracy": 0.8876052476992363,
+            "precision": 0.6055408970976254,
+            "recall": 0.07779661016949152,
+            "f1": 0.13787924301592072,
+            "roc_auc": 0.7540135326806827,
+            "average_precision": 0.323456546029801
+        },
+        "model_path": "models\\XGBoost.joblib",
+        "timestamp": "2025-05-26T22:49:19.137548"
+    }
+}
