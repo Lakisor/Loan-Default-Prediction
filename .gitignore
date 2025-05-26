@@ -1,0 +1,11 @@
+echo "__pycache__/
+*.py[cod]
+*$py.class
+.DS_Store
+.env
+venv/
+.ipynb_checkpoints/
+*.parquet
+models/
+results/
+" > .gitignore
