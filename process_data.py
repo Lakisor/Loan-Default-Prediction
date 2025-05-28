@@ -21,7 +21,7 @@ class FeatureEngineer(BaseEstimator, TransformerMixin):
     def transform(self, X):
         X = X.copy()
         
-        X['DTI_Group'] = pd.cut(
+        X['DTI_Group'] = pd.cut(  # Debt To Income ratio
             X['DTIRatio'],
             bins=[-np.inf, 0.3, 0.6, np.inf],
             labels=['low', 'medium', 'high']
@@ -87,14 +87,11 @@ class DataPreprocessor:
         return num_features + cat_features + self.engineered_features
     
     def process(self, X, y=None, fit=False):
-        # Feature engineering
         feature_engineer = FeatureEngineer()
         X_engineered = feature_engineer.transform(X)
         
-        # Apply preprocessing
         if fit:
             X_processed = self.preprocessor.fit_transform(X_engineered)
-            # Get feature names after fitting
             self.feature_names = self._get_feature_names(self.preprocessor, X_engineered)
         else:
             X_processed = self.preprocessor.transform(X_engineered)

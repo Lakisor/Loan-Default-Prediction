@@ -7,6 +7,8 @@ from pathlib import Path
 from typing import Dict, List
 import os
 
+# Картинки всех результатов сохраняются в results/plots
+
 try:
     plt.style.use('ggplot')
     sns.set_palette("husl")
@@ -63,15 +65,22 @@ def plot_metrics_comparison(results: Dict) -> None:
 def plot_roc_curves(results: Dict) -> None:
     """Строит ROC-кривые для всех моделей."""
     plt.figure(figsize=(10, 8))
+    has_curves = False
     
     for model_name, model_data in results.items():
-        if 'roc_curve' in model_data['test_metrics']:
+        if 'test_metrics' in model_data and 'roc_curve' in model_data['test_metrics']:
             fpr, tpr, _ = model_data['test_metrics']['roc_curve']
             roc_auc = model_data['test_metrics']['roc_auc']
             plt.plot(fpr, tpr, lw=2, 
                     label=f'{model_name} (AUC = {roc_auc:.3f})')
+            has_curves = True
     
-    plt.plot([0, 1], [0, 1], 'k--', lw=2)
+    if not has_curves:
+        print("Предупреждение: Нет данных для построения ROC-кривых")
+        plt.close()
+        return
+        
+    plt.plot([0, 1], [0, 1], 'k--', lw=2, label='Random')
     plt.xlim([0.0, 1.0])
     plt.ylim([0.0, 1.05])
     plt.xlabel('False Positive Rate')
@@ -80,19 +89,27 @@ def plot_roc_curves(results: Dict) -> None:
     plt.legend(loc="lower right")
     plt.grid(True)
     
+    os.makedirs('results/plots', exist_ok=True)
     plt.savefig('results/plots/roc_curves.png')
     plt.close()
 
 def plot_precision_recall_curves(results: Dict) -> None:
     """Строит Precision-Recall кривые для всех моделей."""
     plt.figure(figsize=(10, 8))
+    has_curves = False
     
     for model_name, model_data in results.items():
-        if 'precision_recall_curve' in model_data['test_metrics']:
+        if 'test_metrics' in model_data and 'precision_recall_curve' in model_data['test_metrics']:
             precision, recall, _ = model_data['test_metrics']['precision_recall_curve']
             avg_precision = model_data['test_metrics']['average_precision']
             plt.plot(recall, precision, lw=2,
                     label=f'{model_name} (AP = {avg_precision:.3f})')
+            has_curves = True
+    
+    if not has_curves:
+        print("Предупреждение: Нет данных для построения Precision-Recall кривых")
+        plt.close()
+        return
     
     plt.xlabel('Recall')
     plt.ylabel('Precision')
@@ -100,6 +117,7 @@ def plot_precision_recall_curves(results: Dict) -> None:
     plt.legend(loc="lower left")
     plt.grid(True)
     
+    os.makedirs('results/plots', exist_ok=True)
     plt.savefig('results/plots/precision_recall_curves.png')
     plt.close()
 
